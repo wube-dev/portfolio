@@ -2,132 +2,158 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Zap, ShieldCheck, Layers, Cpu } from "lucide-react";
 
-const About = () => {
-  const coreValues = [
-    {
-      icon: <Zap className="text-yellow-500" />,
-      title: "Performance First",
-      desc: "Optimizing every byte for lightning-fast load times and smooth interactions.",
-    },
-    {
-      icon: <ShieldCheck className="text-green-500" />,
-      title: "Clean & Secure",
-      desc: "Architecting robust backend systems with a focus on data integrity and security.",
-    },
-    {
-      icon: <Layers className="text-blue-500" />,
-      title: "Scalable Logic",
-      desc: "Writing modular, reusable code that grows alongside your business needs.",
-    },
-    {
-      icon: <Cpu className="text-purple-500" />,
-      title: "Full-Stack Mindset",
-      desc: "Bridging the gap between beautiful design and complex database management.",
-    },
-  ];
+/* ----------------------------- DATA ----------------------------- */
+const CORE_VALUES = [
+  {
+    icon: Zap,
+    color: "text-yellow-500",
+    title: "Performance First",
+    desc: "Optimizing every byte for lightning-fast load times and smooth interactions.",
+  },
+  {
+    icon: ShieldCheck,
+    color: "text-green-500",
+    title: "Clean & Secure",
+    desc: "Architecting robust backend systems with strong data integrity and security.",
+  },
+  {
+    icon: Layers,
+    color: "text-blue-500",
+    title: "Scalable Logic",
+    desc: "Writing modular, reusable code that grows alongside business needs.",
+  },
+  {
+    icon: Cpu,
+    color: "text-purple-500",
+    title: "Full-Stack Mindset",
+    desc: "Bridging beautiful UI with powerful database-driven systems.",
+  },
+];
 
+/* ----------------------------- ANIMATIONS ----------------------------- */
+const fadeLeft = {
+  hidden: { opacity: 0, x: -30 },
+  show: { opacity: 1, x: 0, transition: { duration: 0.8 } },
+};
+const fadeUp = (delay = 0) => ({
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, delay } },
+});
+
+/* ----------------------------- COMPONENT ----------------------------- */
+export default function About() {
   return (
-    <section id="about" className="py-32 bg-[#030303] relative overflow-hidden">
-      {/* Decorative background text */}
-      <div className="absolute top-20 left-10 text-[15rem] font-black text-white/[0.02] select-none pointer-events-none hidden lg:block">
+    <section
+      id="about"
+      aria-labelledby="about-heading"
+      className="relative overflow-hidden py-32 bg-white dark:bg-[#030303] transition-colors"
+    >
+      {/* Decorative Background Text */}
+      <span
+        aria-hidden="true"
+        className="pointer-events-none select-none absolute top-20 left-10 hidden text-[15rem] font-black text-black/[0.03] dark:text-white/[0.02] lg:block"
+      >
         ABOUT
-      </div>
+      </span>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-20 items-center">
-          {/* LEFT SIDE: Narrative */}
+      <div className="relative z-10 mx-auto max-w-7xl px-6">
+        <div className="grid items-center gap-20 lg:grid-cols-2">
+          {/* ---------------- LEFT CONTENT ---------------- */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            variants={fadeLeft}
+            initial="hidden"
+            whileInView="show"
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
           >
-            <h2 className="text-blue-600 font-mono text-sm uppercase tracking-[0.4em] mb-6">
+            <p className="mb-6 font-mono text-sm uppercase tracking-[0.4em] text-blue-600">
               The Developer Behind the Code
-            </h2>
-            <h3 className="text-4xl md:text-5xl font-black text-white mb-8 tracking-tighter leading-tight">
-              Bridging the gap between <br />
-              <span className="text-zinc-500 italic">Imagination</span> and{" "}
-              <span className="text-blue-500">Execution</span>.
-            </h3>
+            </p>
 
-            <div className="space-y-6 text-zinc-400 text-lg leading-relaxed">
+            <h2
+              id="about-heading"
+              className="mb-8 text-4xl font-black tracking-tight text-slate-900 dark:text-white md:text-5xl leading-tight"
+            >
+              Bridging the gap between <br />
+              <span className="italic text-zinc-500">Imagination</span> and{" "}
+              <span className="text-blue-600">Execution</span>.
+            </h2>
+
+            <div className="space-y-6 text-lg leading-relaxed text-slate-600 dark:text-zinc-400">
               <p>
-                I am <span className="text-white font-medium">Wubshet</span>, a
-                Full-Stack Developer with a deep-rooted passion for engineering
-                digital products that matter. With specialized expertise in the
-                <span className="text-white"> MERN stack</span> and{" "}
-                <span className="text-white">MySQL architecture</span>, I focus
-                on building the invisible engines that power modern web
-                experiences.
+                I am{" "}
+                <strong className="text-slate-900 dark:text-white">
+                  Wubshet
+                </strong>
+                , a Full-Stack Developer passionate about building meaningful
+                digital products. I specialize in the{" "}
+                <strong className="text-slate-900 dark:text-white">
+                  MERN stack
+                </strong>{" "}
+                and{" "}
+                <strong className="text-slate-900 dark:text-white">
+                  MySQL architecture
+                </strong>
+                , crafting the invisible engines behind modern web experiences.
               </p>
+
               <p>
-                My approach is simple:{" "}
-                <span className="italic">"Think twice, code once."</span>I don't
-                just build features; I solve business problems. Whether it's
-                optimizing a complex SQL query or crafting a pixel-perfect React
-                interface, I ensure every line of code adds value to the end
-                user.
+                My philosophy is simple: <em>"Think twice, code once."</em> I
+                focus on solving real business problems — from optimizing
+                complex SQL queries to building pixel-perfect React interfaces
+                that deliver measurable value.
               </p>
             </div>
 
-            {/* Quick Stats Signature */}
-            <div className="mt-12 pt-8 border-t border-white/5 flex gap-10">
-              <div>
-                <p className="text-3xl font-black text-white tracking-tighter">
-                  03+
-                </p>
-                <p className="text-xs text-zinc-500 uppercase font-bold tracking-widest mt-1">
-                  Years Coding
-                </p>
-              </div>
-              <div>
-                <p className="text-3xl font-black text-white tracking-tighter">
-                  12+
-                </p>
-                <p className="text-xs text-zinc-500 uppercase font-bold tracking-widest mt-1">
-                  Tech Stack
-                </p>
-              </div>
-              <div>
-                <p className="text-3xl font-black text-white tracking-tighter">
-                  100%
-                </p>
-                <p className="text-xs text-zinc-500 uppercase font-bold tracking-widest mt-1">
-                  Commitment
-                </p>
-              </div>
+            {/* Stats */}
+            <div className="mt-12 flex gap-10 border-t border-slate-200 pt-8 dark:border-white/5">
+              {[
+                { value: "03+", label: "Years Coding" },
+                { value: "12+", label: "Tech Stack" },
+                { value: "100%", label: "Commitment" },
+              ].map((stat) => (
+                <div key={stat.label}>
+                  <p className="text-3xl font-black tracking-tight text-slate-900 dark:text-white">
+                    {stat.value}
+                  </p>
+                  <p className="mt-1 text-xs font-bold uppercase tracking-widest text-zinc-500">
+                    {stat.label}
+                  </p>
+                </div>
+              ))}
             </div>
           </motion.div>
 
-          {/* RIGHT SIDE: Value Cards (The Bento Grid) */}
-          <div className="grid sm:grid-cols-2 gap-4">
-            {coreValues.map((value, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -5, borderColor: "rgba(37, 99, 235, 0.3)" }}
-                className="p-8 bg-[#0a0a0a] border border-white/5 rounded-[2.5rem] transition-all group"
-              >
-                <div className="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                  {value.icon}
-                </div>
-                <h4 className="text-white font-bold text-lg mb-3 tracking-tight">
-                  {value.title}
-                </h4>
-                <p className="text-zinc-500 text-sm leading-relaxed">
-                  {value.desc}
-                </p>
-              </motion.div>
-            ))}
+          {/* ---------------- RIGHT GRID ---------------- */}
+          <div className="grid gap-4 sm:grid-cols-2">
+            {CORE_VALUES.map((item, i) => {
+              const Icon = item.icon;
+              return (
+                <motion.article
+                  key={item.title}
+                  variants={fadeUp(i * 0.1)}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true }}
+                  whileHover={{ y: -6 }}
+                  className="group rounded-[2rem] border border-slate-200 bg-slate-50 p-8 transition-all hover:border-blue-500/30 dark:border-white/5 dark:bg-[#0a0a0a]"
+                >
+                  <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-sm transition-transform group-hover:scale-110 dark:bg-white/5">
+                    <Icon className={item.color} />
+                  </div>
+
+                  <h3 className="mb-3 text-lg font-bold tracking-tight text-slate-900 dark:text-white">
+                    {item.title}
+                  </h3>
+
+                  <p className="text-sm leading-relaxed text-slate-600 dark:text-zinc-500">
+                    {item.desc}
+                  </p>
+                </motion.article>
+              );
+            })}
           </div>
         </div>
       </div>
     </section>
   );
-};
-
-export default About;
+}
