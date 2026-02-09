@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+/* 1. Senior Way: Custom Modern Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #030303;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e1e1e;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2563eb;
+}
+
+/* 2. Senior Way: Noise Overlay (Makes black backgrounds look textured) */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* 3. Base Styles */
+@custom-variant dark (&:where(.dark, .dark *));
+
+html,
+body {
+  @apply bg-white dark:bg-[#030303] overflow-x-hidden;
+  scroll-behavior: smooth;
+}
+
+/* 4. Selection Highlight Color */
+::selection {
+  background-color: rgba(37, 99, 235, 0.3);
+  color: #fff;
+}
+
+/* 5. Smooth Global Transitions */
+* {
+  transition: background-color 0.4s ease, border-color 0.4s ease;
+}
